@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBK game</title>
+    <link rel="stylesheet" href="../boot/css/bootstrap.min.css">
+
+    <!-- style -->
+    <style>
+
+        .img-computer{
+            width: 20%;
+        }
+
+        .img-player{
+            width: 60%;
+            cursor: pointer;
+        }
+
+        
+    </style>
+    <!-- style -->
+
+</head>
+<body>
+    <header class="container-fluid bg-primary shadow p-1 d-sm-flex justify-content-between d-flex align-items-center">
+        <div>
+            <a href="">
+                <h1 class="text-center text-white text-shadow">Game Online</h1>
+            </a>
+        </div>
+        <div>
+            <p class="text-white me-5 h3">Win  <span id="m"></span> | Lose  <span id="k"></span></p>
+        </div>
+    </header>
+    <div class="container">
+        <div class="komputer mt-5">
+            <figure class="text-center">
+                <img src="../img/1.png" alt="" class="shadow rounded img-computer" id="computer">
+            </figure>
+        </div>
+
+        <!-- text -->
+        <div class="vs m-3">
+            <h1 class="text-center">VS</h1>
+        </div>
+        <!-- text -->
+
+        <!-- player -->
+        <div class="player d-sm-flex justify-content-between">
+            <figure class="text-center">
+                <img src="../img/1.png" alt="" class="shadow rounded img-player" id="batu">
+            </figure>
+            <figure class="text-center">
+                <img src="../img/2.png" alt="" class="shadow rounded img-player" id="kertas">
+            </figure>
+            <figure class="text-center">
+                <img src="../img/3.png" alt="" class="shadow rounded img-player" id="gunting">
+            </figure>
+        </div>
+        <!-- player -->
+    </div>
+
+    <div class="kembali position-absolute bottom-0 start-0 mb-2 ms-2">
+        <a href="">
+            <button class="btn btn-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                  </svg> Kembali
+            </button>
+        </a>
+    </div>
+    
+    <script src="../java/gbk.js"></script>
+</body>
+</html>
