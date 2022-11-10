@@ -9,6 +9,12 @@ def halaman1(request):
 def login(request):
     return render(request,'login.html')
 
+def gbk(request):
+    return render(request,'gbk.html')
+
+def sign_up(request):
+    return render(request,'sign_up.html')
+
 # def login(request):
    
    
