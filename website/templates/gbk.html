@@ -1,3 +1,4 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +39,7 @@
     <div class="container">
         <div class="komputer mt-5">
             <figure class="text-center">
-                <img src="../img/1.png" alt="" class="shadow rounded img-computer" id="computer">
+                <img src="{%static '/img/1.png' %}" alt="batu" class="shadow rounded img-computer" id="computer">
             </figure>
         </div>
 
@@ -51,13 +52,13 @@
         <!-- player -->
         <div class="player d-sm-flex justify-content-between">
             <figure class="text-center">
-                <img src="../img/1.png" alt="" class="shadow rounded img-player" id="batu">
+                <img src="{%static '/img/1.png' %}" alt="" class="shadow rounded img-player" id="batu">
             </figure>
             <figure class="text-center">
-                <img src="../img/2.png" alt="" class="shadow rounded img-player" id="kertas">
+                <img src="{%static '/img/2.png' %}" alt="" class="shadow rounded img-player" id="kertas">
             </figure>
             <figure class="text-center">
-                <img src="../img/3.png" alt="" class="shadow rounded img-player" id="gunting">
+                <img src="{%static '/img/3.png' %}" alt="" class="shadow rounded img-player" id="gunting">
             </figure>
         </div>
         <!-- player -->
@@ -73,6 +74,84 @@
         </a>
     </div>
     
-    <script src="../java/gbk.js"></script>
+    <script>
+        var batu = document.getElementById('batu')
+        var kertas = document.getElementById('kertas')
+        var gunting = document.getElementById('gunting')
+        var computer = document.getElementById('computer')
+        var m = document.getElementById('m')
+        var k = document.getElementById('k')
+
+        var m_score = 0
+        var k_score = 0
+
+        batu.addEventListener('click' , function () {
+            var x = Math.floor(Math.random() * 11);
+
+            if(x <= 3){
+                computer.src = "{%static '/img/1.png' %}"
+                alert('seri')
+            }
+            else if(x >= 8){
+                computer.src = "{%static '/img/2.png' %}"
+                k_score += 1
+                alert('kalah')
+                k.innerHTML = k_score;
+            }
+            else{
+                computer.src = "{%static '/img/3.png' %}"
+                m_score += 1
+                alert('menang')
+                m.innerHTML = m_score;
+            }
+        })
+
+        kertas.addEventListener('click' , function () {
+            var x = Math.floor(Math.random() * 11);
+
+            if(x <= 3){
+                computer.src = "{%static '/img/1.png' %}"
+                m_score += 1
+                alert('menang')
+                m.innerHTML = m_score;
+                
+            }
+            else if(x >= 8){
+                computer.src = "{%static '/img/2.png' %}"
+                alert('seri')
+            }
+            else{
+                computer.src = "{%static '/img/3.png' %}"
+                k_score += 1
+                alert('kalah')
+                k.innerHTML = k_score ; 
+            }
+        })
+
+        gunting.addEventListener('click' , function () {
+            var x = Math.floor(Math.random() * 11);
+
+            if(x <= 3){
+                computer.src = "{%static '/img/1.png' %}"
+                k_score += 1
+                alert('kalah')
+                k.innerHTML = k_score ; 
+            }
+            else if(x >= 8){
+                computer.src = "{%static '/img/2.png' %}"
+                m_score += 1
+                alert('menang')
+                m.innerHTML = m_score;
+            }
+            else{
+                computer.src = "{%static '/img/3.png' %}"
+                alert('seri')
+            }
+        })
+
+
+
+    </script>
+    
 </body>
 </html>
