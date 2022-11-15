@@ -1,4 +1,4 @@
-{%load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GBK game</title>
-    <link rel="stylesheet" href="{%static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css'%}">
 
     <!-- style -->
     <style>
+
+        @font-face {
+            font-family:'ave' ;
+            src: url({% static '/font/AvenueX-Regular.otf' %});
+        }
+
+        @font-face {
+            font-family: 'jam';
+            src: url({% static '/font/digital-7.ttf' %});
+        }
+
+        .jam{
+            font-family: jam;
+        }
+
+        .headline{
+            font-family: ave;
+        }
 
         .img-computer{
             width: 20%;
@@ -20,26 +38,43 @@
             cursor: pointer;
         }
 
+        #m,#k{
+            display: inline-block;
+            width: 60px;
+            height: 40px;
+        }
+
+        .pmb{
+            width: 150px;
+            height: 50px;
+            top: 20%;
+            left: 10%;
+        }
+
+        .pmb p{
+            line-height: 50px;
+        }
         
     </style>
     <!-- style -->
 
 </head>
 <body>
-    <header class="container-fluid bg-primary shadow p-1 d-sm-flex justify-content-between d-flex align-items-center">
-        <div>
-            <a href="">
-                <h1 class="text-center text-white text-shadow">Game Online</h1>
-            </a>
-        </div>
-        <div>
-            <p class="text-white me-5 h3">Win  <span id="m"></span> | Lose  <span id="k"></span></p>
+    <header class="container-fluid bg-primary shadow p-1">
+        <div class="row">
+            <div class="col-6">
+                <h1 class="text-white text-shadow headline text-start">Game GBK</h1>
+            </div>
+            <div class="col-6 text-end text-white h3">
+                <span class='headline'>Menang : </span><div class="bg-dark me-3 mt-2 text-center rounded jam" id="m"></div>
+                <span class='headline'>Kalah : </span><div class="bg-dark me-3 mt-2 text-center rounded jam" id="k"></div>
+            </div>
         </div>
     </header>
     <div class="container">
         <div class="komputer mt-5">
             <figure class="text-center">
-                <img src="{%static '/img/1.png' %}" alt="batu" class="shadow rounded img-computer" id="computer">
+                <img src="{% static '/img/random.jpg' %}" alt="" class="shadow rounded img-computer" id="computer">
             </figure>
         </div>
 
@@ -52,20 +87,20 @@
         <!-- player -->
         <div class="player d-sm-flex justify-content-between">
             <figure class="text-center">
-                <img src="{%static '/img/1.png' %}" alt="" class="shadow rounded img-player" id="batu">
+                <img src="{% static '/img/1.png' %}" alt="" class="shadow rounded img-player" id="batu">
             </figure>
             <figure class="text-center">
-                <img src="{%static '/img/2.png' %}" alt="" class="shadow rounded img-player" id="kertas">
+                <img src="{% static '/img/2.png' %}" alt="" class="shadow rounded img-player" id="kertas">
             </figure>
             <figure class="text-center">
-                <img src="{%static '/img/3.png' %}" alt="" class="shadow rounded img-player" id="gunting">
+                <img src="{% static '/img/3.png' %}" alt="" class="shadow rounded img-player" id="gunting">
             </figure>
         </div>
         <!-- player -->
     </div>
 
     <div class="kembali position-absolute bottom-0 start-0 mb-2 ms-2">
-        <a href="">
+        <a href="{% url 'halaman1' %} ">
             <button class="btn btn-dark">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
@@ -73,7 +108,11 @@
             </button>
         </a>
     </div>
-    
+
+    <div class="pmb bg-dark position-absolute rounded shadow">
+        <p class="text-center text-white h3 headline" id='cong'>?</p>
+    </div>
+
     <script>
         var batu = document.getElementById('batu')
         var kertas = document.getElementById('kertas')
@@ -81,28 +120,31 @@
         var computer = document.getElementById('computer')
         var m = document.getElementById('m')
         var k = document.getElementById('k')
+        var cong = document.getElementById('cong')
 
         var m_score = 0
         var k_score = 0
+        k.innerHTML = k_score;
+        m.innerHTML = m_score;
 
         batu.addEventListener('click' , function () {
             var x = Math.floor(Math.random() * 11);
 
             if(x <= 3){
-                computer.src = "{%static '/img/1.png' %}"
-                alert('seri')
+                computer.src = "{% static '/img/1.png' %}"
+                
             }
             else if(x >= 8){
-                computer.src = "{%static '/img/2.png' %}"
+                computer.src = "{% static '/img/2.png' %}"
                 k_score += 1
-                alert('kalah')
                 k.innerHTML = k_score;
+                cong.innerHTML = 'Kalah';
             }
             else{
-                computer.src = "{%static '/img/3.png' %}"
+                computer.src = "{% static '/img/3.png' %}"
                 m_score += 1
-                alert('menang')
                 m.innerHTML = m_score;
+                cong.innerHTML = 'Menang';
             }
         })
 
@@ -110,21 +152,21 @@
             var x = Math.floor(Math.random() * 11);
 
             if(x <= 3){
-                computer.src = "{%static '/img/1.png' %}"
+                computer.src = "{% static '/img/1.png' %}"
                 m_score += 1
-                alert('menang')
                 m.innerHTML = m_score;
+                cong.innerHTML = 'Menang';
                 
             }
             else if(x >= 8){
-                computer.src = "{%static '/img/2.png' %}"
-                alert('seri')
+                computer.src = "{% static '/img/2.png' %}"
+                
             }
             else{
-                computer.src = "{%static '/img/3.png' %}"
+                computer.src = "{% static '/img/3.png' %}"
                 k_score += 1
-                alert('kalah')
-                k.innerHTML = k_score ; 
+                k.innerHTML = k_score ;
+                cong.innerHTML = 'Kalah'; 
             }
         })
 
@@ -132,26 +174,22 @@
             var x = Math.floor(Math.random() * 11);
 
             if(x <= 3){
-                computer.src = "{%static '/img/1.png' %}"
+                computer.src = "{% static '/img/1.png' %}"
                 k_score += 1
-                alert('kalah')
-                k.innerHTML = k_score ; 
+                k.innerHTML = k_score ;
+                cong.innerHTML = 'Kalah'; 
             }
             else if(x >= 8){
-                computer.src = "{%static '/img/2.png' %}"
+                computer.src = "{% static '/img/2.png' %}"
                 m_score += 1
-                alert('menang')
                 m.innerHTML = m_score;
+                cong.innerHTML = 'Menang';
             }
             else{
-                computer.src = "{%static '/img/3.png' %}"
-                alert('seri')
+                computer.src = "{% static '/img/3.png' %}"
+                
             }
         })
-
-
-
     </script>
-    
 </body>
 </html>

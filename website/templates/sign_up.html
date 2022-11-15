@@ -32,24 +32,25 @@
     <div class="kontainer d-flex align-items-center">
         <main class="w-25 bg-dark m-auto p-5 rounded shadow bg-opacity-75 text-white">
             <h1 class="text-center">Sign up</h1>
-            <form>
+            <form method="post">
+                {% csrf_token %}
                 <div class="mb-3">
                   <label for="nama" class="form-label">Nama</label>
-                  <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" name="nama">
+                  <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" name="user_name" required>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password" name="password">
+                  <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="password" name="password1">
+                    <input type="password" class="form-control" id="password" name="password1" required>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" required name='email'>
                 </div>
-                <button type="submit" class="btn btn-primary ">Submit</button>
+                <button type="submit" class="btn btn-primary" name='submit'>Submit</button>
               </form>
         </main>
     </div>

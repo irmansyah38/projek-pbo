@@ -32,19 +32,21 @@
     <div class="kontainer d-flex align-items-center">
         <main class="w-25 bg-dark m-auto p-5 rounded shadow bg-opacity-75 text-white">
             <h1 class="text-center">Log in</h1>
-            <form >
+            <h1 class='text-center'>{{user_name}}</h1>
+            <form method="post">
+            {% csrf_token %}
                 <div class="mb-3">
-                  <label for="nama" class="form-label">Nama</label>
-                  <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" name="nama">
+                  <label for="nama" class="form-label">User Name</label>
+                  <input type="text" class="form-control" id="nama" aria-describedby="emailHelp" name="user_name" required>
                 </div>
                 <div class="mbp-3">
                   <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password" name="password">
+                  <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary ">Submit</button>
+                <button type="submit" class="btn btn-primary" name='submit'>Submit</button>
               </form>
         </main>
     </div>
-</body>
+
 </html>
