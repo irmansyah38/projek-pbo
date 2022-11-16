@@ -1,4 +1,5 @@
-{%load static %}
+{% load crispy_forms_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
         <main class="w-25 bg-dark m-auto p-5 rounded shadow bg-opacity-75 text-white">
             <h1 class="text-center">Log in</h1>
             <h1 class='text-center'>{{user_name}}</h1>
-            <form method="post">
+            {% comment %} <form method="post">
             {% csrf_token %}
                 <div class="mb-3">
                   <label for="nama" class="form-label">User Name</label>
@@ -45,7 +46,12 @@
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary" name='submit'>Submit</button>
-              </form>
+              </form> {% endcomment %}
+               <form method="POST" action="">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="submit" class="btn btn-lg btn-info btn-block mt-4" value="Login"> 
+            </form> 
         </main>
     </div>
 
